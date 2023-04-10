@@ -11,6 +11,7 @@
         public string? Email { get; set; }
         public string? Phone { get; set; }
         public double Salary { get; set; }
+        public int DepartmentId { get; set; }
         public string? DepartmentName { get; set; }
 
     }

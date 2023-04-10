@@ -1,4 +1,5 @@
 ﻿using Employee_Management.IRepositories;
+using Employee_Management.Models;
 using Employee_Management.Repositories;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -31,6 +32,14 @@ namespace Employee_Management.Controllers
             var employee = await _employeeRepository.GetEmployeeById(id);
             return Ok(employee);
 
+        }
+
+
+        [HttpPost("Insert_Employee")]
+        public async Task<IActionResult> InsertEmployee([FromBody] Employee employee)
+        {
+            await _employeeRepository.InsertEmployee(employee);
+            return Ok();
         }
 
 

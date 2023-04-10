@@ -99,7 +99,36 @@ namespace Employee_Management.Repositories
         
 
         // Insert a new employee
+        public async Task InsertEmployee(Employee employee)
+        {
+            if (employee == null)
+            {
+                throw new ArgumentNullException();
+            }
 
+            else
+            {
+                // Open the connection to database
+                var connection = new OracleConnection(_connectionString);
+                connection.Open();
+
+                var command = new OracleCommand("EMPLOYEE_INSERT", connection);
+                command.CommandType = CommandType.StoredProcedure;
+
+                // Adding input parameter for employee details
+                command.Parameters.Add("first_name", OracleDbType.Varchar2, employee.FirstName, ParameterDirection.Input);
+                command.Parameters.Add("last_name", OracleDbType.Varchar2, employee.LastName, ParameterDirection.Input);
+                command.Parameters.Add("email", OracleDbType.Varchar2, employee.Email, ParameterDirection.Input);
+                command.Parameters.Add("phone", OracleDbType.Varchar2, employee.Phone, ParameterDirection.Input);
+                command.Parameters.Add("salary", OracleDbType.Double, employee.Salary, ParameterDirection.Input);
+                command.Parameters.Add("dept_id", OracleDbType.Int32, employee.DepartmentId, ParameterDirection.Input);
+
+                
+                await command.ExecuteNonQueryAsync();
+
+            }
+
+        }
 
 
 
