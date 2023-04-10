@@ -43,6 +43,21 @@ namespace Employee_Management.Controllers
         }
 
 
+        [HttpPost("Update Employee")]
+        public IActionResult UpdateEmployee(int empId, string firstName, string lastName, string email, string phone, decimal salary, int deptId)
+        {
+            int result = _employeeRepository.UpdateEmployee(empId, firstName, lastName, email, phone, salary, deptId);
+
+            if(result == 1)
+            {
+                return Ok("Employee Updated Successfully");
+            }
+            else
+            {
+                return NotFound("Employee Not found");
+            }
+        }
+
 
 
     }

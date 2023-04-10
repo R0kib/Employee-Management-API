@@ -16,6 +16,11 @@ namespace Employee_Management.IRepositories
         public Task InsertEmployee(Employee employee);
 
 
+        // Update an employee details
+        //public Task UpdateEmployee(Employee employee); 
+        public int UpdateEmployee(int empId, string firstName, string lastName, string email, string phone, decimal salary, int deptId);
+
+
 
     }
 }

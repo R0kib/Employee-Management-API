@@ -41,7 +41,7 @@ namespace Employee_Management.Repositories
                     LastName = reader.GetString(2),
                     Email = reader.GetString(3),
                     Phone = reader.GetString(4),
-                    Salary = reader.GetDouble(5),
+                    Salary = reader.GetDecimal(5),
                     DepartmentName = reader.GetString(6)
                 });
             }
@@ -87,7 +87,7 @@ namespace Employee_Management.Repositories
                     LastName = reader.GetString(2),
                     Email = reader.GetString(3),
                     Phone = reader.GetString(4),
-                    Salary = reader.GetDouble(5),
+                    Salary = reader.GetDecimal(5),
                     DepartmentName = reader.GetString(6)
                 });
             }
@@ -131,6 +131,36 @@ namespace Employee_Management.Repositories
         }
 
 
+
+
+        // Update an employee details
+
+        public int UpdateEmployee(int empId, string firstName, string lastName, string email, string phone, decimal salary, int deptId)
+        {
+            var connection = new OracleConnection(_connectionString);
+
+            connection.Open();
+
+            var command = new OracleCommand("EMPLOYEE_UPDATE", connection);
+            command.CommandType = CommandType.StoredProcedure;
+
+            command.Parameters.Add("e_id", OracleDbType.Int32).Value = empId;
+            command.Parameters.Add("first_name", OracleDbType.Varchar2).Value = firstName;
+            command.Parameters.Add("last_name", OracleDbType.Varchar2).Value = lastName;
+            command.Parameters.Add("email", OracleDbType.Varchar2).Value = email;
+            command.Parameters.Add("phone", OracleDbType.Varchar2).Value = phone;
+            command.Parameters.Add("salary", OracleDbType.Decimal).Value = salary;
+            command.Parameters.Add("dept_id", OracleDbType.Int32).Value = deptId;
+
+            command.Parameters.Add("result", OracleDbType.Int32).Direction = ParameterDirection.Output;
+
+            command.ExecuteNonQuery();
+
+            int result = Convert.ToInt32(command.Parameters["result"].Value);
+
+            return result;
+
+        }
 
 
     }
