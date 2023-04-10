@@ -134,7 +134,6 @@ namespace Employee_Management.Repositories
 
 
         // Update an employee details
-
         public int UpdateEmployee(int empId, string firstName, string lastName, string email, string phone, decimal salary, int deptId)
         {
             var connection = new OracleConnection(_connectionString);
@@ -161,6 +160,35 @@ namespace Employee_Management.Repositories
             return result;
 
         }
+
+
+
+        // Delete an employee
+        public int DeleteEmployee(int empId)
+        {
+            var connection = new OracleConnection(_connectionString);
+
+            connection.Open();
+
+            var command = new OracleCommand("employee_delete", connection);
+            command.CommandType = CommandType.StoredProcedure;
+
+            // Adding input parameter to e_id
+            command.Parameters.Add("e_id", OracleDbType.Int32).Value = empId;
+
+            // Adding output parameter to result
+            command.Parameters.Add("result", OracleDbType.Int32).Direction = ParameterDirection.Output;
+
+            command.ExecuteNonQuery();
+
+            int result = Convert.ToInt32(command.Parameters["result"].Value);
+
+            return result;
+
+        }
+
+
+
 
 
     }

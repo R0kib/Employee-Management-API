@@ -43,7 +43,7 @@ namespace Employee_Management.Controllers
         }
 
 
-        [HttpPost("Update Employee")]
+        [HttpPut("Update Employee")]
         public IActionResult UpdateEmployee(int empId, string firstName, string lastName, string email, string phone, decimal salary, int deptId)
         {
             int result = _employeeRepository.UpdateEmployee(empId, firstName, lastName, email, phone, salary, deptId);
@@ -57,6 +57,23 @@ namespace Employee_Management.Controllers
                 return NotFound("Employee Not found");
             }
         }
+
+
+        [HttpDelete("Delete Employee")]
+        public IActionResult DeleteEmployee(int empId)
+        {
+            int result = _employeeRepository.DeleteEmployee(empId);
+
+            if (result == 1)
+            {
+                return Ok("Employee Deleted Successfully");
+            }
+            else
+            {
+                return NotFound("Employee Not Found");
+            }
+        }
+
 
 
 

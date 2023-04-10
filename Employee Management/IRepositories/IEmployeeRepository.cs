@@ -17,8 +17,10 @@ namespace Employee_Management.IRepositories
 
 
         // Update an employee details
-        //public Task UpdateEmployee(Employee employee); 
         public int UpdateEmployee(int empId, string firstName, string lastName, string email, string phone, decimal salary, int deptId);
+
+        // Delete an employee
+        public int DeleteEmployee(int empId);
 
 
 
