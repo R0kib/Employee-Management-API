@@ -2,3 +2,6 @@
 *.vsidx
 *.suo
 .vs/Employee Management/v17/.suo
+*.dll
+*.pdb
+.vs/Employee Management/v17/.suo

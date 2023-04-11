@@ -2,7 +2,7 @@
 {
 
 
-    //Employee model with the same attribute employee table have in the database
+    //Employee model having the same attributes employee table have in the database
     public class Employee
     {
         public int Id { get; set; }
