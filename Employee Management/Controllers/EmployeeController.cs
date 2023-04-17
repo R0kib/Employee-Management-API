@@ -44,9 +44,9 @@ namespace Employee_Management.Controllers
 
 
         [HttpPut("Update_Employee")]
-        public async Task<IActionResult> UpdateEmployee(int empId, string firstName, string lastName, string email, string phone, decimal salary, int deptId)
+        public async Task<IActionResult> UpdateEmployee([FromBody] Employee employee)
         {
-            _employeeRepository.UpdateEmployee(empId, firstName, lastName, email, phone, salary, deptId);
+            _employeeRepository.UpdateEmployee(employee);
 
             return Ok();
             
