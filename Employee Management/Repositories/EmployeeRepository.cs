@@ -134,7 +134,7 @@ namespace Employee_Management.Repositories
 
 
         // Update an employee details
-        public int UpdateEmployee(int empId, string firstName, string lastName, string email, string phone, decimal salary, int deptId)
+        public async Task UpdateEmployee(int empId, string firstName, string lastName, string email, string phone, decimal salary, int deptId)
         {
             var connection = new OracleConnection(_connectionString);
 
@@ -155,16 +155,13 @@ namespace Employee_Management.Repositories
 
             command.ExecuteNonQuery();
 
-            int result = Convert.ToInt32(command.Parameters["result"].Value);
-
-            return result;
 
         }
 
 
 
         // Delete an employee
-        public int DeleteEmployee(int empId)
+        public async Task DeleteEmployee(int empId)
         {
             var connection = new OracleConnection(_connectionString);
 
@@ -181,9 +178,9 @@ namespace Employee_Management.Repositories
 
             command.ExecuteNonQuery();
 
-            int result = Convert.ToInt32(command.Parameters["result"].Value);
+            /*int result = Convert.ToInt32(command.Parameters["result"].Value);
 
-            return result;
+            return result;*/
 
         }
 

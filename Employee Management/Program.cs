@@ -7,12 +7,20 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddScoped<IEmployeeRepository, EmployeeRepository>();
 
 
+
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
+
+//cors policy
+app.UseCors(policy => policy.AllowAnyHeader()
+ .AllowAnyMethod()
+ .AllowCredentials()
+ .SetIsOriginAllowed(orgin => true)
+ );
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())

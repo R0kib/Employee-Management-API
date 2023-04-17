@@ -43,35 +43,22 @@ namespace Employee_Management.Controllers
         }
 
 
-        [HttpPut("Update Employee")]
-        public IActionResult UpdateEmployee(int empId, string firstName, string lastName, string email, string phone, decimal salary, int deptId)
+        [HttpPut("Update_Employee")]
+        public async Task<IActionResult> UpdateEmployee(int empId, string firstName, string lastName, string email, string phone, decimal salary, int deptId)
         {
-            int result = _employeeRepository.UpdateEmployee(empId, firstName, lastName, email, phone, salary, deptId);
+            _employeeRepository.UpdateEmployee(empId, firstName, lastName, email, phone, salary, deptId);
 
-            if(result == 1)
-            {
-                return Ok("Employee Updated Successfully");
-            }
-            else
-            {
-                return NotFound("Employee Not found");
-            }
+            return Ok();
+            
         }
 
 
-        [HttpDelete("Delete Employee")]
-        public IActionResult DeleteEmployee(int empId)
+        [HttpDelete("Delete_Employee")]
+        public async Task<IActionResult> DeleteEmployee(int empId)
         {
-            int result = _employeeRepository.DeleteEmployee(empId);
 
-            if (result == 1)
-            {
-                return Ok("Employee Deleted Successfully");
-            }
-            else
-            {
-                return NotFound("Employee Not Found");
-            }
+            _employeeRepository.DeleteEmployee(empId);
+            return Ok();
         }
 
 
