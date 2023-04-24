@@ -46,7 +46,7 @@ namespace Employee_Management.Controllers
         [HttpPut("Update_Employee")]
         public async Task<IActionResult> UpdateEmployee([FromBody] Employee employee)
         {
-            _employeeRepository.UpdateEmployee(employee);
+            await _employeeRepository.UpdateEmployee(employee);
 
             return Ok();
             
@@ -57,7 +57,7 @@ namespace Employee_Management.Controllers
         public async Task<IActionResult> DeleteEmployee(int empId)
         {
 
-            _employeeRepository.DeleteEmployee(empId);
+            await _employeeRepository.DeleteEmployee(empId);
             return Ok();
         }
 

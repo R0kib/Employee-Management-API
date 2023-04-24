@@ -153,7 +153,7 @@ namespace Employee_Management.Repositories
 
             command.Parameters.Add("result", OracleDbType.Int32).Direction = ParameterDirection.Output;
 
-            command.ExecuteNonQuery();
+            await command.ExecuteNonQueryAsync();
 
 
         }
@@ -176,7 +176,7 @@ namespace Employee_Management.Repositories
             // Adding output parameter to result
             command.Parameters.Add("result", OracleDbType.Int32).Direction = ParameterDirection.Output;
 
-            command.ExecuteNonQuery();
+            await command.ExecuteNonQueryAsync();
 
             /*int result = Convert.ToInt32(command.Parameters["result"].Value);
 
